@@ -30,92 +30,300 @@
       --muted:#9aa6bd;
       --shadow: 0 10px 22px rgba(0, 0, 0, .35);
     }
+
     *{box-sizing:border-box}
-    body{ margin:0; font-family:"Times New Roman", Times, serif; background:var(--bg); color:var(--text); }
-    .app{ min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:18px; }
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      font-family:"Times New Roman", Times, serif;
+      background:var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    .app{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding: clamp(10px, 2.8vw, 18px);
+    }
+
     .topbar{
       width:min(920px, 100%);
-      display:flex; justify-content:space-between; align-items:center; gap:12px;
-      padding:10px 6px; position:relative;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      padding:8px 4px;
+      position:relative;
     }
-    .icon-btn{ border:1px solid var(--border); background:transparent; color:var(--text); padding:10px 12px; border-radius:12px; cursor:pointer; }
+
+    .icon-btn{
+      border:1px solid var(--border);
+      background:transparent;
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      flex:0 0 auto;
+    }
     .icon-btn:hover{ filter:brightness(1.05); }
-    h1.title{ margin:0; font-size:34px; color:var(--sky); text-align:center; flex:1; }
-    h2.subtitle{ margin:0; font-size:28px; color:var(--sky); text-align:center; flex:1; }
 
-    .container{ width:min(920px, 100%); margin-top:10px; display:flex; flex-direction:column; gap:16px; align-items:center; }
+    h1.title{
+      margin:0;
+      font-size: clamp(22px, 5vw, 34px);
+      color:var(--sky);
+      text-align:center;
+      flex:1 1 auto;
+      min-width:0;
+      line-height:1.15;
+    }
+    h2.subtitle{
+      margin:0;
+      font-size: clamp(18px, 4.6vw, 28px);
+      color:var(--sky);
+      text-align:center;
+      flex:1 1 auto;
+      min-width:0;
+      line-height:1.15;
+    }
 
-    .card{ width:100%; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow); }
+    .container{
+      width:min(920px, 100%);
+      margin-top:8px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      align-items:center;
+    }
 
-    .menu{ width:min(520px, 100%); display:flex; flex-direction:column; gap:14px; margin-top:26px; }
-    .menu-btn{ width:100%; background:var(--sky); color:var(--yellow); border:none; border-radius:var(--radius); padding:18px 16px; font-size:22px; cursor:pointer; box-shadow:var(--shadow); }
+    .card{
+      width:100%;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding: clamp(12px, 2.6vw, 16px);
+      box-shadow:var(--shadow);
+    }
+
+    .menu{
+      width:100%;
+      max-width:520px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .menu-btn{
+      width:100%;
+      background:var(--sky);
+      color:var(--yellow);
+      border:none;
+      border-radius:var(--radius);
+      padding: clamp(14px, 3.6vw, 18px);
+      font-size: clamp(18px, 4.2vw, 22px);
+      cursor:pointer;
+      box-shadow:var(--shadow);
+    }
     .menu-btn:hover{ filter:brightness(0.98); }
 
-    .hint{ width:min(760px, 100%); text-align:center; margin-top:28px; font-size:18px; line-height:1.35; }
+    .hint{
+      width:100%;
+      max-width:760px;
+      text-align:center;
+      margin-top:18px;
+      font-size: clamp(15px, 3.8vw, 18px);
+      line-height:1.35;
+      word-break:break-word;
+    }
     .hint small{ color:var(--muted); display:block; margin-top:8px; }
 
-    .form{ width:100%; display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-    .field{ display:flex; flex-direction:column; gap:6px; }
-    label{ font-size:16px; color:var(--muted); }
+    .form{
+      width:100%;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    .field{ display:flex; flex-direction:column; gap:6px; min-width:0; }
+    label{ font-size:15px; color:var(--muted); }
     input, select{
       font-family:"Times New Roman", Times, serif;
-      font-size:18px; padding:12px 12px;
-      border-radius:12px; border:1px solid var(--border);
-      background:transparent; color:var(--text); outline:none;
+      font-size: clamp(16px, 4.2vw, 18px);
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:transparent;
+      color:var(--text);
+      outline:none;
+      min-width:0;
     }
-    input:focus, select:focus{ border-color:var(--sky2); box-shadow:0 0 0 4px rgba(102,191,255,.18); }
+    input:focus, select:focus{
+      border-color:var(--sky2);
+      box-shadow:0 0 0 4px rgba(102,191,255,.18);
+    }
 
     .full{ grid-column:1 / -1; }
-    .row2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .row2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
 
-    .actions{ display:flex; gap:10px; justify-content:flex-end; margin-top:10px; }
-    .btn{ border:1px solid var(--border); background:transparent; color:var(--text); padding:12px 14px; border-radius:12px; cursor:pointer; font-size:18px; }
+    .actions{
+      display:flex;
+      gap:10px;
+      justify-content:flex-end;
+      margin-top:10px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      border:1px solid var(--border);
+      background:transparent;
+      color:var(--text);
+      padding:12px 14px;
+      border-radius:12px;
+      cursor:pointer;
+      font-size: clamp(16px, 4.2vw, 18px);
+    }
     .btn-primary{ background:var(--sky); color:#08324d; border:none; }
-    .btn-primary:hover{ filter:brightness(0.98); }
-    .btn-danger{ border-color:rgba(239,68,68,.4); color:var(--danger); }
+    .btn-danger{ border-color: rgba(239,68,68,.4); color: var(--danger); }
 
     .list{ width:100%; display:flex; flex-direction:column; gap:12px; }
-    .item{ border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:var(--card); box-shadow:var(--shadow); }
-    .item-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:14px; cursor:pointer; }
-    .item-title{ font-size:18px; color:var(--text); line-height:1.2; }
+    .item{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:var(--card);
+      box-shadow:var(--shadow);
+    }
+    .item-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      padding:14px;
+      cursor:pointer;
+    }
+    .item-title{
+      font-size: clamp(16px, 4.3vw, 18px);
+      color:var(--text);
+      line-height:1.2;
+    }
     .item-sub{ font-size:14px; color:var(--muted); margin-top:4px; }
-    .item-actions{ display:flex; gap:8px; flex-shrink:0; }
-    .mini{ padding:9px 10px; border-radius:12px; border:1px solid var(--border); background:transparent; cursor:pointer; color:var(--text); font-size:16px; }
+
+    .item-actions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      flex:0 0 auto;
+    }
+    .mini{
+      padding:9px 10px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:transparent;
+      cursor:pointer;
+      color:var(--text);
+      font-size:15px;
+      white-space:nowrap;
+    }
     .mini:hover{ filter:brightness(1.05); }
-    .item-body{ display:none; border-top:1px solid var(--border); padding:14px; }
-    .item-body pre{ margin:0; white-space:pre-wrap; font-family:"Times New Roman", Times, serif; font-size:17px; line-height:1.35; }
+
+    .item-body{
+      display:none;
+      border-top:1px solid var(--border);
+      padding:14px;
+    }
+    .item-body pre{
+      margin:0;
+      white-space:pre-wrap;
+      font-family:"Times New Roman", Times, serif;
+      font-size: clamp(15px, 4vw, 17px);
+      line-height:1.35;
+    }
 
     .toast{
-      position:fixed; bottom:18px; left:50%; transform:translateX(-50%);
-      background:rgba(15, 23, 42, 0.95); color:white; padding:10px 14px;
-      border-radius:999px; font-size:14px; display:none; z-index:50;
+      position:fixed;
+      bottom:18px;
+      left:50%;
+      transform:translateX(-50%);
+      background: rgba(15, 23, 42, 0.95);
+      color:white;
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:14px;
+      display:none;
+      z-index:50;
+      max-width: calc(100% - 24px);
+      text-align:center;
     }
-    [data-theme="dark"] .toast{ background:rgba(226,232,240,.92); color:#0b1220; }
+    [data-theme="dark"] .toast{
+      background: rgba(226, 232, 240, 0.92);
+      color:#0b1220;
+    }
 
     .settings-pop{
-      position:absolute; right:18px; top:62px; width:260px;
-      background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
-      padding:12px; box-shadow:var(--shadow); display:none; z-index:20;
+      position:absolute;
+      right:6px;
+      top:58px;
+      width: min(260px, calc(100vw - 24px));
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:12px;
+      box-shadow:var(--shadow);
+      display:none;
+      z-index:20;
     }
-    .settings-pop .row{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .settings-pop .row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .switch{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      user-select:none;
+      font-size:16px;
+      color:var(--text);
+    }
     .switch input{
-      width:42px; height:22px; appearance:none; border-radius:999px;
-      border:1px solid var(--border); background:rgba(100,116,139,.25);
-      position:relative; cursor:pointer; outline:none;
+      width:42px;
+      height:22px;
+      appearance:none;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(100,116,139,.25);
+      position:relative;
+      cursor:pointer;
+      outline:none;
     }
     .switch input::after{
-      content:""; position:absolute; width:18px; height:18px; top:1px; left:1px;
-      border-radius:999px; background:var(--bg); transition:all .18s ease;
-      box-shadow:0 4px 10px rgba(2,8,23,.18);
+      content:"";
+      position:absolute;
+      width:18px;
+      height:18px;
+      top:1px;
+      left:1px;
+      border-radius:999px;
+      background:var(--bg);
+      transition: all .18s ease;
+      box-shadow: 0 4px 10px rgba(2,8,23,.18);
     }
-    .switch input:checked{ background:rgba(102,191,255,.55); border-color:rgba(102,191,255,.55); }
+    .switch input:checked{
+      background: rgba(102,191,255,.55);
+      border-color: rgba(102,191,255,.55);
+    }
     .switch input:checked::after{ left:21px; }
 
-    @media (max-width:760px){
-      .form{ grid-template-columns:1fr; }
-      .row2{ grid-template-columns:1fr; }
-      h1.title{ font-size:30px; }
-      h2.subtitle{ font-size:24px; }
+    @media (max-width: 760px){
+      .form{ grid-template-columns: 1fr; }
+      .row2{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -144,7 +352,6 @@
     <div class="toast" id="toast"></div>
   </div>
 
-  <!-- Firebase (module) -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
     import {
@@ -164,7 +371,7 @@
       doc
     } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
-    // Firebase config kamu (SUDAH DIPASANG)
+    // Firebase config kamu
     const firebaseConfig = {
       apiKey: "AIzaSyDx0Pe-kYuza_i1GRs3arSINomyJtsH6Ik",
       authDomain: "catatanibadah-9d2ab.firebaseapp.com",
@@ -175,18 +382,17 @@
       measurementId: "G-GBYCNCHTF6"
     };
 
-    // Akun bersama (sesuai request kamu)
+    // Akun bersama
     const SHARED_EMAIL = "admin@gmail.com";
     const SHARED_PASSWORD = "admin123";
 
-    // init firebase
     const fbApp = initializeApp(firebaseConfig);
     const auth = getAuth(fbApp);
     const db = getFirestore(fbApp);
 
     // ---------- Helpers ----------
     const $ = (sel) => document.querySelector(sel);
-    const THEME_KEY = "catatan-ibadah.theme.shared.v1";
+    const THEME_KEY = "catatan-ibadah.theme.shared.v2";
 
     function showToast(msg){
       const t = $("#toast");
@@ -237,18 +443,30 @@
       lines.push(`Hari/Tanggal: ${note.hariTanggal || "-"}`);
       lines.push(`Tempat Ibadah: ${note.tempatIbadah || "-"}`);
       lines.push(`Khadim: ${note.khadim || "-"}`);
+      lines.push(`MC: ${note.mc || "-"}`);
       lines.push(`Pundi 1: Rp ${formatRupiah(note.pundi1)}`);
       lines.push(`Pundi 2: Rp ${formatRupiah(note.pundi2)}`);
       lines.push(`Pundi 3: Rp ${formatRupiah(note.pundi3)}`);
+
+      if(note.namaIbadah === "WKI"){
+        lines.push(`Pundi 4: Rp ${formatRupiah(note.pundi4)}`);
+      }
+
       lines.push(`Partisipasi Keluarga: Rp ${formatRupiah(note.partisipasi)}`);
+
       if(note.namaIbadah === "Kolom"){
         lines.push(`Kotak: Rp ${formatRupiah(note.kotak)}`);
       }
+
       lines.push(`Jumlah: Rp ${formatRupiah(note.jumlah)}`);
+      lines.push(`Kehadiran: ${note.kehadiran ?? "-"}`);
+
+      // Untuk Kolom (khusus) tetap tampil juga wanita/pria sesuai versi sebelumnya
       if(note.namaIbadah === "Kolom"){
         lines.push(`Jumlah yang hadir - Wanita: ${note.hadirWanita ?? "-"}`);
         lines.push(`Jumlah yang hadir - Pria: ${note.hadirPria ?? "-"}`);
       }
+
       return lines.join("\n");
     }
 
@@ -307,7 +525,7 @@
       showToast("PDF diunduh!");
     }
 
-    // ---------- Firestore (shared notes) ----------
+    // ---------- Firestore ----------
     const NOTES_COL = collection(db, "notes");
 
     async function fetchNotes(){
@@ -414,12 +632,6 @@
             <div class="actions full">
               <button class="btn btn-primary" id="loginBtn" type="button">Masuk</button>
             </div>
-
-            <div class="field full" style="margin-top:8px;">
-              <div style="font-size:13px;color:var(--muted);line-height:1.35;">
-                Catatan: halaman ini harus diakses dari link (HTTPS) seperti Netlify/GitHub Pages agar Firebase berjalan.
-              </div>
-            </div>
           </div>
         </div>
       `;
@@ -475,6 +687,7 @@
                 <option value="" selected disabled>Pilih...</option>
                 <option value="Kolom">Kolom</option>
                 <option value="P/R">P/R</option>
+                <option value="WKI">WKI</option>
               </select>
             </div>
 
@@ -500,6 +713,12 @@
               <input id="khadim" type="text" placeholder="Tulis di sini" />
             </div>
 
+            <!-- Baru: MC di antara Khadim dan Pundi 1 -->
+            <div class="field full">
+              <label>MC:</label>
+              <input id="mc" type="text" placeholder="Tulis di sini" />
+            </div>
+
             <div class="field">
               <label>Pundi 1: Rp</label>
               <input id="pundi1" inputmode="numeric" placeholder="0" />
@@ -513,12 +732,19 @@
               <label>Pundi 3: Rp</label>
               <input id="pundi3" inputmode="numeric" placeholder="0" />
             </div>
+
+            <!-- WKI saja: Pundi 4 -->
+            <div class="field" id="pundi4Wrap" style="display:none;">
+              <label>Pundi 4: Rp</label>
+              <input id="pundi4" inputmode="numeric" placeholder="0" />
+            </div>
+
             <div class="field">
               <label>Partisipasi Keluarga: Rp</label>
               <input id="partisipasi" inputmode="numeric" placeholder="0" />
             </div>
 
-            <!-- Tambahan HANYA saat Nama Ibadah = Kolom -->
+            <!-- Kolom saja: Kotak -->
             <div class="field full" id="kotakWrap" style="display:none;">
               <label>Kotak: Rp</label>
               <input id="kotak" inputmode="numeric" placeholder="0" />
@@ -529,7 +755,13 @@
               <input id="jumlah" type="text" readonly />
             </div>
 
-            <!-- Tambahan HANYA saat Nama Ibadah = Kolom -->
+            <!-- Baru: Kehadiran (angka saja) di bawah jumlah (semua jenis) -->
+            <div class="field full">
+              <label>Kehadiran (angka saja):</label>
+              <input id="kehadiran" inputmode="numeric" placeholder="0" />
+            </div>
+
+            <!-- Kolom saja: wanita/pria tetap ada sesuai versi sebelumnya -->
             <div class="field full" id="hadirWrap" style="display:none;">
               <label>Jumlah yang hadir:</label>
               <div class="row2">
@@ -557,22 +789,36 @@
         hariTanggal: $("#hariTanggal"),
         tempatIbadah: $("#tempatIbadah"),
         khadim: $("#khadim"),
+        mc: $("#mc"),
         pundi1: $("#pundi1"),
         pundi2: $("#pundi2"),
         pundi3: $("#pundi3"),
+        pundi4Wrap: $("#pundi4Wrap"),
+        pundi4: $("#pundi4"),
         partisipasi: $("#partisipasi"),
         kotakWrap: $("#kotakWrap"),
         kotak: $("#kotak"),
         jumlah: $("#jumlah"),
+        kehadiran: $("#kehadiran"),
         hadirWrap: $("#hadirWrap"),
         hadirWanita: $("#hadirWanita"),
         hadirPria: $("#hadirPria"),
       };
 
       function setVisibility(){
-        const isKolom = el.namaIbadah.value === "Kolom";
+        const jenis = el.namaIbadah.value;
+        const isKolom = jenis === "Kolom";
+        const isWKI = jenis === "WKI";
+
         el.kotakWrap.style.display = isKolom ? "block" : "none";
         el.hadirWrap.style.display = isKolom ? "block" : "none";
+
+        el.pundi4Wrap.style.display = isWKI ? "block" : "none";
+
+        // reset field khusus jika pindah jenis
+        if(!isKolom){ el.kotak.value = ""; el.hadirWanita.value = ""; el.hadirPria.value = ""; }
+        if(!isWKI){ el.pundi4.value = ""; }
+
         computeJumlah();
       }
 
@@ -588,12 +834,28 @@
       }
 
       function computeJumlah(){
-        const sum =
-          parseRupiahToNumber(el.pundi1.value) +
-          parseRupiahToNumber(el.pundi2.value) +
-          parseRupiahToNumber(el.pundi3.value) +
-          parseRupiahToNumber(el.partisipasi.value) +
-          (el.namaIbadah.value === "Kolom" ? parseRupiahToNumber(el.kotak.value) : 0);
+        const jenis = el.namaIbadah.value;
+        const p1 = parseRupiahToNumber(el.pundi1.value);
+        const p2 = parseRupiahToNumber(el.pundi2.value);
+        const p3 = parseRupiahToNumber(el.pundi3.value);
+        const p4 = parseRupiahToNumber(el.pundi4.value);
+        const part = parseRupiahToNumber(el.partisipasi.value);
+        const kotak = parseRupiahToNumber(el.kotak.value);
+
+        let sum = 0;
+
+        // Urutan benar (sesuai request):
+        // P/R    = P1 + P2 + P3 + Partisipasi
+        // Kolom  = P1 + P2 + P3 + Partisipasi + Kotak
+        // WKI    = P1 + P2 + P3 + P4 + Partisipasi
+        if(jenis === "WKI"){
+          sum = p1 + p2 + p3 + p4 + part;
+        }else if(jenis === "Kolom"){
+          sum = p1 + p2 + p3 + part + kotak;
+        }else{
+          sum = p1 + p2 + p3 + part;
+        }
+
         el.jumlah.value = formatRupiah(sum);
       }
 
@@ -602,50 +864,73 @@
         el.hariTanggal.value = "";
         el.tempatIbadah.value = "";
         el.khadim.value = "";
+        el.mc.value = "";
         el.pundi1.value = "";
         el.pundi2.value = "";
         el.pundi3.value = "";
+        el.pundi4.value = "";
         el.partisipasi.value = "";
         el.kotak.value = "";
         el.jumlah.value = "";
+        el.kehadiran.value = "";
         el.hadirWanita.value = "";
         el.hadirPria.value = "";
+
         el.kotakWrap.style.display = "none";
         el.hadirWrap.style.display = "none";
+        el.pundi4Wrap.style.display = "none";
       }
 
       el.namaIbadah.addEventListener("change", setVisibility);
+
       attachRupiahFormat(el.pundi1);
       attachRupiahFormat(el.pundi2);
       attachRupiahFormat(el.pundi3);
+      attachRupiahFormat(el.pundi4);
       attachRupiahFormat(el.partisipasi);
       attachRupiahFormat(el.kotak);
+
+      attachOnlyNumber(el.kehadiran);
       attachOnlyNumber(el.hadirWanita);
       attachOnlyNumber(el.hadirPria);
 
-      $("#resetBtn").addEventListener("click", ()=>{ resetForm(); showToast("Form direset."); });
+      $("#resetBtn").addEventListener("click", ()=>{
+        resetForm();
+        showToast("Form direset.");
+      });
 
       $("#saveBtn").addEventListener("click", async ()=>{
         if(!el.namaIbadah.value){
-          alert("Nama Ibadah harus dipilih (Kolom atau P/R).");
+          alert("Nama Ibadah harus dipilih (Kolom / P/R / WKI).");
           return;
         }
 
+        const jenis = el.namaIbadah.value;
+
         const note = {
           createdAt: new Date().toISOString(),
-          namaIbadah: el.namaIbadah.value,
+          namaIbadah: jenis,
           kolom: "7",
           hariTanggal: el.hariTanggal.value.trim(),
           tempatIbadah: el.tempatIbadah.value.trim(),
           khadim: el.khadim.value.trim(),
+          mc: el.mc.value.trim(),
+
           pundi1: parseRupiahToNumber(el.pundi1.value),
           pundi2: parseRupiahToNumber(el.pundi2.value),
           pundi3: parseRupiahToNumber(el.pundi3.value),
+          pundi4: (jenis === "WKI" ? parseRupiahToNumber(el.pundi4.value) : 0),
+
           partisipasi: parseRupiahToNumber(el.partisipasi.value),
-          kotak: (el.namaIbadah.value === "Kolom" ? parseRupiahToNumber(el.kotak.value) : 0),
+
+          kotak: (jenis === "Kolom" ? parseRupiahToNumber(el.kotak.value) : 0),
+
           jumlah: parseRupiahToNumber(el.jumlah.value),
-          hadirWanita: (el.namaIbadah.value === "Kolom" ? (el.hadirWanita.value ? Number(el.hadirWanita.value) : 0) : null),
-          hadirPria: (el.namaIbadah.value === "Kolom" ? (el.hadirPria.value ? Number(el.hadirPria.value) : 0) : null),
+
+          kehadiran: (el.kehadiran.value ? Number(el.kehadiran.value) : 0),
+
+          hadirWanita: (jenis === "Kolom" ? (el.hadirWanita.value ? Number(el.hadirWanita.value) : 0) : null),
+          hadirPria: (jenis === "Kolom" ? (el.hadirPria.value ? Number(el.hadirPria.value) : 0) : null),
         };
 
         try{
@@ -750,10 +1035,80 @@
       });
     }
 
+    // ---------- Login & Home ----------
+    function renderLogin(){
+      updateTopbar();
+      const view = $("#view");
+      view.innerHTML = `
+        <div class="card" style="max-width:520px;">
+          <div style="font-size:20px;color:var(--sky);text-align:center;margin-bottom:10px;">Login</div>
+
+          <div style="background:rgba(102,191,255,.14); border:1px solid var(--border); padding:12px; border-radius:14px; margin-bottom:12px;">
+            <div style="font-size:16px; color:var(--text);">Akun yang digunakan:</div>
+            <div style="margin-top:6px; font-size:16px;">
+              Email: <b>${SHARED_EMAIL}</b><br/>
+              Password: <b>${SHARED_PASSWORD}</b>
+            </div>
+            <div style="margin-top:8px; font-size:13px; color:var(--muted);">
+              (Akun ini dipakai bersama agar semua orang melihat catatan yang sama.)
+            </div>
+          </div>
+
+          <div class="form" style="grid-template-columns:1fr;">
+            <div class="field full">
+              <label>Email</label>
+              <input id="loginEmail" type="email" value="${SHARED_EMAIL}" />
+            </div>
+            <div class="field full">
+              <label>Password</label>
+              <input id="loginPass" type="password" value="${SHARED_PASSWORD}" />
+            </div>
+            <div class="actions full">
+              <button class="btn btn-primary" id="loginBtn" type="button">Masuk</button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      $("#loginBtn").addEventListener("click", async ()=>{
+        const email = $("#loginEmail").value.trim();
+        const pass = $("#loginPass").value;
+        try{
+          await signInWithEmailAndPassword(auth, email, pass);
+          showToast("Login berhasil.");
+          navigate("home");
+        }catch(err){
+          alert("Login gagal: " + (err?.message || err));
+        }
+      });
+    }
+
+    function renderHome(){
+      updateTopbar();
+      const view = $("#view");
+      view.innerHTML = `
+        <div class="menu">
+          <button class="menu-btn" id="goForm">Isi Catatan</button>
+          <button class="menu-btn" id="goList">Lihat Catatan</button>
+        </div>
+
+        <div class="hint">
+          Link Gdrive: https://drive.google.com/drive/folders/18Xl1jvDChDXMxQwO1cnCumihQggp45-M?usp=sharing
+          <small><button class="btn" id="logoutBtn" type="button">Logout</button></small>
+        </div>
+      `;
+      $("#goForm").addEventListener("click", ()=> navigate("form"));
+      $("#goList").addEventListener("click", ()=> navigate("list"));
+      $("#logoutBtn").addEventListener("click", async ()=>{
+        await signOut(auth);
+        showToast("Logout.");
+        navigate("login");
+      });
+    }
+
     // ---------- Init ----------
     loadTheme();
 
-    // Jika tidak login -> halaman login
     onAuthStateChanged(auth, (user)=>{
       if(user) navigate("home");
       else navigate("login");
