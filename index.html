@@ -10,320 +10,88 @@
 
   <style>
     :root{
-      --sky:#66bfff;
-      --sky2:#8fd3ff;
-      --yellow:#ffd24d;
-      --bg:#ffffff;
-      --text:#0f172a;
-      --card:#f5f7fb;
-      --border:#d7dde8;
-      --muted:#64748b;
-      --danger:#ef4444;
+      --sky:#66bfff; --sky2:#8fd3ff; --yellow:#ffd24d;
+      --bg:#ffffff; --text:#0f172a; --card:#f5f7fb; --border:#d7dde8;
+      --muted:#64748b; --danger:#ef4444;
       --shadow: 0 10px 22px rgba(2, 8, 23, .08);
       --radius: 16px;
     }
     [data-theme="dark"]{
-      --bg:#0b1220;
-      --text:#e5e7eb;
-      --card:#0f1a2f;
-      --border:#20314e;
-      --muted:#9aa6bd;
-      --shadow: 0 10px 22px rgba(0, 0, 0, .35);
+      --bg:#0b1220; --text:#e5e7eb; --card:#0f1a2f; --border:#20314e;
+      --muted:#9aa6bd; --shadow: 0 10px 22px rgba(0, 0, 0, .35);
     }
-
     *{box-sizing:border-box}
-    html, body { height: 100%; }
+    html,body{height:100%}
     body{
-      margin:0;
-      font-family:"Times New Roman", Times, serif;
-      background:var(--bg);
-      color:var(--text);
-      overflow-x:hidden;
+      margin:0; font-family:"Times New Roman", Times, serif;
+      background:var(--bg); color:var(--text); overflow-x:hidden;
     }
-
-    .app{
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      padding: clamp(10px, 2.8vw, 18px);
-    }
-
+    .app{min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:clamp(10px,2.8vw,18px);}
     .topbar{
-      width:min(920px, 100%);
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-      padding:8px 4px;
-      position:relative;
+      width:min(920px,100%); display:flex; justify-content:space-between; align-items:center;
+      gap:10px; padding:8px 4px; position:relative;
     }
-
-    .icon-btn{
-      border:1px solid var(--border);
-      background:transparent;
-      color:var(--text);
-      padding:10px 12px;
-      border-radius:12px;
-      cursor:pointer;
-      flex:0 0 auto;
-    }
-    .icon-btn:hover{ filter:brightness(1.05); }
-
-    h1.title{
-      margin:0;
-      font-size: clamp(22px, 5vw, 34px);
-      color:var(--sky);
-      text-align:center;
-      flex:1 1 auto;
-      min-width:0;
-      line-height:1.15;
-    }
-    h2.subtitle{
-      margin:0;
-      font-size: clamp(18px, 4.6vw, 28px);
-      color:var(--sky);
-      text-align:center;
-      flex:1 1 auto;
-      min-width:0;
-      line-height:1.15;
-    }
-
-    .container{
-      width:min(920px, 100%);
-      margin-top:8px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      align-items:center;
-    }
-
-    .card{
-      width:100%;
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding: clamp(12px, 2.6vw, 16px);
-      box-shadow:var(--shadow);
-    }
-
-    .menu{
-      width:100%;
-      max-width:520px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      margin-top:18px;
-    }
-
-    .menu-btn{
-      width:100%;
-      background:var(--sky);
-      color:var(--yellow);
-      border:none;
-      border-radius:var(--radius);
-      padding: clamp(14px, 3.6vw, 18px);
-      font-size: clamp(18px, 4.2vw, 22px);
-      cursor:pointer;
-      box-shadow:var(--shadow);
-    }
-    .menu-btn:hover{ filter:brightness(0.98); }
-
-    .hint{
-      width:100%;
-      max-width:760px;
-      text-align:center;
-      margin-top:18px;
-      font-size: clamp(15px, 3.8vw, 18px);
-      line-height:1.35;
-      word-break:break-word;
-    }
-    .hint small{ color:var(--muted); display:block; margin-top:8px; }
-
-    .form{
-      width:100%;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    .field{ display:flex; flex-direction:column; gap:6px; min-width:0; }
-    label{ font-size:15px; color:var(--muted); }
-    input, select{
+    .icon-btn{border:1px solid var(--border); background:transparent; color:var(--text); padding:10px 12px; border-radius:12px; cursor:pointer;}
+    h1.title{margin:0; font-size:clamp(22px,5vw,34px); color:var(--sky); text-align:center; flex:1; min-width:0; line-height:1.15;}
+    h2.subtitle{margin:0; font-size:clamp(18px,4.6vw,28px); color:var(--sky); text-align:center; flex:1; min-width:0; line-height:1.15;}
+    .container{width:min(920px,100%); margin-top:8px; display:flex; flex-direction:column; gap:14px; align-items:center;}
+    .card{width:100%; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:clamp(12px,2.6vw,16px); box-shadow:var(--shadow);}
+    .menu{width:100%; max-width:520px; display:flex; flex-direction:column; gap:12px; margin-top:18px;}
+    .menu-btn{width:100%; background:var(--sky); color:var(--yellow); border:none; border-radius:var(--radius); padding:clamp(14px,3.6vw,18px); font-size:clamp(18px,4.2vw,22px); cursor:pointer; box-shadow:var(--shadow);}
+    .hint{width:100%; max-width:760px; text-align:center; margin-top:18px; font-size:clamp(15px,3.8vw,18px); line-height:1.35; word-break:break-word;}
+    .hint small{color:var(--muted); display:block; margin-top:8px;}
+    .form{width:100%; display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+    .field{display:flex; flex-direction:column; gap:6px; min-width:0;}
+    label{font-size:15px; color:var(--muted);}
+    input,select{
       font-family:"Times New Roman", Times, serif;
-      font-size: clamp(16px, 4.2vw, 18px);
-      padding:12px 12px;
-      border-radius:12px;
-      border:1px solid var(--border);
-      background:transparent;
-      color:var(--text);
-      outline:none;
-      min-width:0;
+      font-size:clamp(16px,4.2vw,18px);
+      padding:12px; border-radius:12px; border:1px solid var(--border);
+      background:transparent; color:var(--text); outline:none; min-width:0;
     }
-    input:focus, select:focus{
-      border-color:var(--sky2);
-      box-shadow:0 0 0 4px rgba(102,191,255,.18);
-    }
-
-    .full{ grid-column:1 / -1; }
-    .row2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-
-    .actions{
-      display:flex;
-      gap:10px;
-      justify-content:flex-end;
-      margin-top:10px;
-      flex-wrap:wrap;
-    }
-    .btn{
-      border:1px solid var(--border);
-      background:transparent;
-      color:var(--text);
-      padding:12px 14px;
-      border-radius:12px;
-      cursor:pointer;
-      font-size: clamp(16px, 4.2vw, 18px);
-    }
-    .btn-primary{ background:var(--sky); color:#08324d; border:none; }
-    .btn-danger{ border-color: rgba(239,68,68,.4); color: var(--danger); }
-
-    .list{ width:100%; display:flex; flex-direction:column; gap:12px; }
-    .item{
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      overflow:hidden;
-      background:var(--card);
-      box-shadow:var(--shadow);
-    }
-    .item-head{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
-      padding:14px;
-      cursor:pointer;
-    }
-    .item-title{
-      font-size: clamp(16px, 4.3vw, 18px);
-      color:var(--text);
-      line-height:1.2;
-    }
-    .item-sub{ font-size:14px; color:var(--muted); margin-top:4px; }
-
-    .item-actions{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      flex:0 0 auto;
-    }
-    .mini{
-      padding:9px 10px;
-      border-radius:12px;
-      border:1px solid var(--border);
-      background:transparent;
-      cursor:pointer;
-      color:var(--text);
-      font-size:15px;
-      white-space:nowrap;
-    }
-    .mini:hover{ filter:brightness(1.05); }
-
-    .item-body{
-      display:none;
-      border-top:1px solid var(--border);
-      padding:14px;
-    }
-    .item-body pre{
-      margin:0;
-      white-space:pre-wrap;
-      font-family:"Times New Roman", Times, serif;
-      font-size: clamp(15px, 4vw, 17px);
-      line-height:1.35;
-    }
-
+    input:focus,select:focus{border-color:var(--sky2); box-shadow:0 0 0 4px rgba(102,191,255,.18);}
+    .full{grid-column:1/-1;}
+    .row2{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+    .actions{display:flex; gap:10px; justify-content:flex-end; margin-top:10px; flex-wrap:wrap;}
+    .btn{border:1px solid var(--border); background:transparent; color:var(--text); padding:12px 14px; border-radius:12px; cursor:pointer; font-size:clamp(16px,4.2vw,18px);}
+    .btn-primary{background:var(--sky); color:#08324d; border:none;}
+    .btn-danger{border-color:rgba(239,68,68,.4); color:var(--danger);}
+    .list{width:100%; display:flex; flex-direction:column; gap:12px;}
+    .item{border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:var(--card); box-shadow:var(--shadow);}
+    .item-head{display:flex; align-items:flex-start; justify-content:space-between; gap:10px; padding:14px; cursor:pointer;}
+    .item-title{font-size:clamp(16px,4.3vw,18px); line-height:1.2;}
+    .item-sub{font-size:14px; color:var(--muted); margin-top:4px;}
+    .item-actions{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;}
+    .mini{padding:9px 10px; border-radius:12px; border:1px solid var(--border); background:transparent; cursor:pointer; font-size:15px; white-space:nowrap;}
+    .item-body{display:none; border-top:1px solid var(--border); padding:14px;}
+    .item-body pre{margin:0; white-space:pre-wrap; font-family:"Times New Roman", Times, serif; font-size:clamp(15px,4vw,17px); line-height:1.35;}
     .toast{
-      position:fixed;
-      bottom:18px;
-      left:50%;
-      transform:translateX(-50%);
-      background: rgba(15, 23, 42, 0.95);
-      color:white;
-      padding:10px 14px;
-      border-radius:999px;
-      font-size:14px;
-      display:none;
-      z-index:50;
-      max-width: calc(100% - 24px);
-      text-align:center;
+      position:fixed; bottom:18px; left:50%; transform:translateX(-50%);
+      background:rgba(15, 23, 42, 0.95); color:#fff; padding:10px 14px;
+      border-radius:999px; font-size:14px; display:none; z-index:50;
+      max-width:calc(100% - 24px); text-align:center;
     }
-    [data-theme="dark"] .toast{
-      background: rgba(226, 232, 240, 0.92);
-      color:#0b1220;
-    }
-
+    [data-theme="dark"] .toast{background:rgba(226,232,240,.92); color:#0b1220;}
     .settings-pop{
-      position:absolute;
-      right:6px;
-      top:58px;
-      width: min(260px, calc(100vw - 24px));
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:12px;
-      box-shadow:var(--shadow);
-      display:none;
-      z-index:20;
+      position:absolute; right:6px; top:58px; width:min(260px, calc(100vw - 24px));
+      background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+      padding:12px; box-shadow:var(--shadow); display:none; z-index:20;
     }
-    .settings-pop .row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
-    .switch{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      user-select:none;
-      font-size:16px;
-      color:var(--text);
-    }
+    .settings-pop .row{display:flex; align-items:center; justify-content:space-between; gap:12px;}
     .switch input{
-      width:42px;
-      height:22px;
-      appearance:none;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background: rgba(100,116,139,.25);
-      position:relative;
-      cursor:pointer;
-      outline:none;
+      width:42px; height:22px; appearance:none; border-radius:999px; border:1px solid var(--border);
+      background:rgba(100,116,139,.25); position:relative; cursor:pointer; outline:none;
     }
     .switch input::after{
-      content:"";
-      position:absolute;
-      width:18px;
-      height:18px;
-      top:1px;
-      left:1px;
-      border-radius:999px;
-      background:var(--bg);
-      transition: all .18s ease;
-      box-shadow: 0 4px 10px rgba(2,8,23,.18);
+      content:""; position:absolute; width:18px; height:18px; top:1px; left:1px;
+      border-radius:999px; background:var(--bg); transition:all .18s ease;
+      box-shadow:0 4px 10px rgba(2,8,23,.18);
     }
-    .switch input:checked{
-      background: rgba(102,191,255,.55);
-      border-color: rgba(102,191,255,.55);
-    }
-    .switch input:checked::after{ left:21px; }
-
-    @media (max-width: 760px){
-      .form{ grid-template-columns: 1fr; }
-      .row2{ grid-template-columns: 1fr; }
+    .switch input:checked{background:rgba(102,191,255,.55); border-color:rgba(102,191,255,.55);}
+    .switch input:checked::after{left:21px;}
+    @media (max-width:760px){
+      .form{grid-template-columns:1fr;}
+      .row2{grid-template-columns:1fr;}
     }
   </style>
 </head>
@@ -348,30 +116,157 @@
       </div>
     </div>
 
-    <div class="container" id="view"></div>
+    <div class="container" id="view">
+      <!-- Supaya tidak blank jika JS error -->
+      <div class="card" style="max-width:720px; text-align:center; color:var(--muted);">
+        Memuat aplikasi...
+      </div>
+    </div>
+
     <div class="toast" id="toast"></div>
   </div>
 
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-    import {
-      getAuth,
-      onAuthStateChanged,
-      signInWithEmailAndPassword,
-      signOut
-    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-    import {
-      getFirestore,
-      collection,
-      addDoc,
-      getDocs,
-      query,
-      orderBy,
-      deleteDoc,
-      doc
-    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+    const $ = (s)=>document.querySelector(s);
 
-    // Firebase config kamu
+    // Tema
+    const THEME_KEY = "catatan-ibadah.theme.shared.v3";
+    function saveTheme(theme){
+      localStorage.setItem(THEME_KEY, theme);
+      $("#app").setAttribute("data-theme", theme);
+      $("#themeToggle").checked = (theme === "dark");
+    }
+    function loadTheme(){ saveTheme(localStorage.getItem(THEME_KEY) || "light"); }
+
+    function showToast(msg){
+      const t=$("#toast");
+      t.textContent=msg;
+      t.style.display="block";
+      clearTimeout(showToast._tm);
+      showToast._tm=setTimeout(()=>t.style.display="none", 1600);
+    }
+
+    // UI error helper
+    function showFatal(msg){
+      $("#view").innerHTML = `
+        <div class="card" style="max-width:820px;">
+          <div style="font-size:18px;color:var(--danger);">Aplikasi tidak bisa berjalan</div>
+          <div style="margin-top:8px; color:var(--text); white-space:pre-wrap;">${msg}</div>
+          <div style="margin-top:10px; color:var(--muted); font-size:14px;">
+            Buka F12 → Console untuk lihat detail error.
+          </div>
+        </div>
+      `;
+    }
+
+    // Pengaturan popover
+    const settingsBtn=$("#settingsBtn");
+    const settingsPop=$("#settingsPop");
+    const themeToggle=$("#themeToggle");
+    const backBtn=$("#backBtn");
+    const pageTitle=$("#pageTitle");
+
+    settingsBtn.addEventListener("click",(e)=>{
+      e.stopPropagation();
+      const open = settingsPop.style.display==="block";
+      settingsPop.style.display = open ? "none":"block";
+    });
+    document.addEventListener("click",(e)=>{
+      if(!settingsPop.contains(e.target) && e.target!==settingsBtn){
+        settingsPop.style.display="none";
+      }
+    });
+    themeToggle.addEventListener("change", ()=> saveTheme(themeToggle.checked ? "dark":"light"));
+
+    // Format angka rupiah
+    function onlyDigits(str){ return (str||"").replace(/[^\d]/g,""); }
+    function formatRupiahFromDigits(d){ if(!d) return ""; d=d.replace(/^0+(?=\d)/,""); return d.replace(/\B(?=(\d{3})+(?!\d))/g,"."); }
+    function parseRupiahToNumber(f){ const d=onlyDigits(f); return d?Number(d):0; }
+    function formatRupiah(n){ n=Number(n||0); if(!Number.isFinite(n)) return "0"; return String(Math.trunc(n)).replace(/\B(?=(\d{3})+(?!\d))/g,"."); }
+    function escapeHtml(str){
+      return (str ?? "").toString()
+        .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;").replaceAll("'","&#039;");
+    }
+
+    function buildText(note){
+      const lines=[];
+      lines.push(`Nama Ibadah: ${note.namaIbadah||"-"}`);
+      lines.push(`Kolom: 7`);
+      lines.push(`Hari/Tanggal: ${note.hariTanggal||"-"}`);
+      lines.push(`Tempat Ibadah: ${note.tempatIbadah||"-"}`);
+      lines.push(`Khadim: ${note.khadim||"-"}`);
+      lines.push(`MC: ${note.mc||"-"}`);
+      lines.push(`Pundi 1: Rp ${formatRupiah(note.pundi1)}`);
+      lines.push(`Pundi 2: Rp ${formatRupiah(note.pundi2)}`);
+      lines.push(`Pundi 3: Rp ${formatRupiah(note.pundi3)}`);
+      if(note.namaIbadah==="WKI") lines.push(`Pundi 4: Rp ${formatRupiah(note.pundi4)}`);
+      lines.push(`Partisipasi Keluarga: Rp ${formatRupiah(note.partisipasi)}`);
+      if(note.namaIbadah==="Kolom") lines.push(`Kotak: Rp ${formatRupiah(note.kotak)}`);
+      lines.push(`Jumlah: Rp ${formatRupiah(note.jumlah)}`);
+      lines.push(`Kehadiran: ${note.kehadiran ?? "-"}`);
+      if(note.namaIbadah==="Kolom"){
+        lines.push(`Jumlah yang hadir - Wanita: ${note.hadirWanita ?? "-"}`);
+        lines.push(`Jumlah yang hadir - Pria: ${note.hadirPria ?? "-"}`);
+      }
+      return lines.join("\n");
+    }
+
+    async function copyToClipboard(text){
+      try{ await navigator.clipboard.writeText(text); showToast("Tersalin!"); }
+      catch{
+        const ta=document.createElement("textarea");
+        ta.value=text; document.body.appendChild(ta); ta.select();
+        document.execCommand("copy"); ta.remove(); showToast("Tersalin!");
+      }
+    }
+
+    async function downloadPDF(note){
+      if(!window.jspdf || !window.jspdf.jsPDF){
+        alert("Library PDF belum siap. Coba refresh halaman.");
+        return;
+      }
+      const { jsPDF } = window.jspdf;
+      const docPDF = new jsPDF({ unit:"pt", format:"a4" });
+      const margin=48;
+      const pageW=docPDF.internal.pageSize.getWidth();
+      const pageH=docPDF.internal.pageSize.getHeight();
+      const maxW=pageW-margin*2;
+
+      docPDF.setFont("times","normal");
+      docPDF.setFontSize(16);
+      docPDF.text("Catatan Ibadah", margin, margin);
+
+      docPDF.setFontSize(12);
+      const text=buildText(note);
+      const lines=docPDF.splitTextToSize(text, maxW);
+      let y=margin+26;
+      for(const line of lines){
+        if(y>pageH-margin){ docPDF.addPage(); y=margin; }
+        docPDF.text(line, margin, y); y+=16;
+      }
+      const safe=(note.hariTanggal||"catatan").toString().replace(/[^\w\d]+/g,"_").slice(0,40);
+      docPDF.save(`CatatanIbadah_${safe}.pdf`);
+      showToast("PDF diunduh!");
+    }
+
+    // Routing
+    const routes = { login:renderLogin, home:renderHome, form:renderForm, list:renderList };
+    let currentRoute="login";
+    function navigate(r){ currentRoute=r; routes[r](); }
+    function updateTopbar(){
+      if(currentRoute==="login" || currentRoute==="home"){
+        pageTitle.textContent="Catatan Ibadah"; pageTitle.className="title"; backBtn.style.visibility="hidden";
+      }else if(currentRoute==="form"){
+        pageTitle.textContent="Isi Catatan"; pageTitle.className="subtitle"; backBtn.style.visibility="visible";
+      }else{
+        pageTitle.textContent="Lihat Catatan"; pageTitle.className="subtitle"; backBtn.style.visibility="visible";
+      }
+    }
+
+    // Firebase init (dengan try/catch supaya tidak blank)
+    let auth, db, NOTES_COL;
+
     const firebaseConfig = {
       apiKey: "AIzaSyDx0Pe-kYuza_i1GRs3arSINomyJtsH6Ik",
       authDomain: "catatanibadah-9d2ab.firebaseapp.com",
@@ -382,252 +277,76 @@
       measurementId: "G-GBYCNCHTF6"
     };
 
-    // Akun bersama
     const SHARED_EMAIL = "admin@gmail.com";
     const SHARED_PASSWORD = "admin123";
 
-    const fbApp = initializeApp(firebaseConfig);
-    const auth = getAuth(fbApp);
-    const db = getFirestore(fbApp);
-
-    // ---------- Helpers ----------
-    const $ = (sel) => document.querySelector(sel);
-    const THEME_KEY = "catatan-ibadah.theme.shared.v2";
-
-    function showToast(msg){
-      const t = $("#toast");
-      t.textContent = msg;
-      t.style.display = "block";
-      clearTimeout(showToast._tm);
-      showToast._tm = setTimeout(()=> t.style.display="none", 1600);
-    }
-
-    function saveTheme(theme){
-      localStorage.setItem(THEME_KEY, theme);
-      $("#app").setAttribute("data-theme", theme);
-      $("#themeToggle").checked = (theme === "dark");
-    }
-    function loadTheme(){
-      const theme = localStorage.getItem(THEME_KEY) || "light";
-      saveTheme(theme);
-    }
-
-    function onlyDigits(str){ return (str || "").replace(/[^\d]/g, ""); }
-    function formatRupiahFromDigits(digits){
-      if(!digits) return "";
-      digits = digits.replace(/^0+(?=\d)/, "");
-      return digits.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    }
-    function parseRupiahToNumber(formatted){
-      const d = onlyDigits(formatted);
-      return d ? Number(d) : 0;
-    }
-    function formatRupiah(num){
-      const n = Number(num || 0);
-      if(!Number.isFinite(n)) return "0";
-      return String(Math.trunc(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    }
-    function escapeHtml(str){
-      return (str ?? "").toString()
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
-
-    function buildText(note){
-      const lines = [];
-      lines.push(`Nama Ibadah: ${note.namaIbadah || "-"}`);
-      lines.push(`Kolom: 7`);
-      lines.push(`Hari/Tanggal: ${note.hariTanggal || "-"}`);
-      lines.push(`Tempat Ibadah: ${note.tempatIbadah || "-"}`);
-      lines.push(`Khadim: ${note.khadim || "-"}`);
-      lines.push(`MC: ${note.mc || "-"}`);
-      lines.push(`Pundi 1: Rp ${formatRupiah(note.pundi1)}`);
-      lines.push(`Pundi 2: Rp ${formatRupiah(note.pundi2)}`);
-      lines.push(`Pundi 3: Rp ${formatRupiah(note.pundi3)}`);
-
-      if(note.namaIbadah === "WKI"){
-        lines.push(`Pundi 4: Rp ${formatRupiah(note.pundi4)}`);
-      }
-
-      lines.push(`Partisipasi Keluarga: Rp ${formatRupiah(note.partisipasi)}`);
-
-      if(note.namaIbadah === "Kolom"){
-        lines.push(`Kotak: Rp ${formatRupiah(note.kotak)}`);
-      }
-
-      lines.push(`Jumlah: Rp ${formatRupiah(note.jumlah)}`);
-      lines.push(`Kehadiran: ${note.kehadiran ?? "-"}`);
-
-      // Untuk Kolom (khusus) tetap tampil juga wanita/pria sesuai versi sebelumnya
-      if(note.namaIbadah === "Kolom"){
-        lines.push(`Jumlah yang hadir - Wanita: ${note.hadirWanita ?? "-"}`);
-        lines.push(`Jumlah yang hadir - Pria: ${note.hadirPria ?? "-"}`);
-      }
-
-      return lines.join("\n");
-    }
-
-    async function copyToClipboard(text){
+    async function boot(){
       try{
-        await navigator.clipboard.writeText(text);
-        showToast("Tersalin!");
-      }catch{
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        ta.remove();
-        showToast("Tersalin!");
+        const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js");
+        const fbAuth = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js");
+        const fbStore = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js");
+
+        const app = initializeApp(firebaseConfig);
+        auth = fbAuth.getAuth(app);
+        db = fbStore.getFirestore(app);
+        NOTES_COL = fbStore.collection(db, "notes");
+
+        // Firestore funcs
+        window.__fs = {
+          fetchNotes: async ()=>{
+            const qy = fbStore.query(NOTES_COL, fbStore.orderBy("createdAt","desc"));
+            const snap = await fbStore.getDocs(qy);
+            return snap.docs.map(d=>({id:d.id, ...d.data()}));
+          },
+          addNote: async (note)=> fbStore.addDoc(NOTES_COL, note),
+          deleteNote: async (id)=> fbStore.deleteDoc(fbStore.doc(db,"notes",id)),
+          signIn: (email,pass)=> fbAuth.signInWithEmailAndPassword(auth,email,pass),
+          signOut: ()=> fbAuth.signOut(auth),
+          onAuth: (cb)=> fbAuth.onAuthStateChanged(auth, cb),
+        };
+
+        // render login dulu agar tidak blank walau auth lambat
+        navigate("login");
+
+        window.__fs.onAuth((user)=>{
+          if(user) navigate("home");
+          else navigate("login");
+        });
+
+      }catch(err){
+        showFatal(
+          "Kemungkinan besar ada error load Firebase module / diblokir jaringan.\n\n" +
+          "Detail:\n" + (err?.message || err)
+        );
       }
     }
 
-    async function downloadPDF(note){
-      if(!window.jspdf || !window.jspdf.jsPDF){
-        alert("Library PDF belum siap. Coba refresh halaman.");
-        return;
-      }
-      const { jsPDF } = window.jspdf;
-      const docPDF = new jsPDF({ unit: "pt", format: "a4" });
+    // Back button
+    backBtn.addEventListener("click", ()=> { if(auth?.currentUser) navigate("home"); else navigate("login"); });
 
-      const margin = 48;
-      const pageW = docPDF.internal.pageSize.getWidth();
-      const pageH = docPDF.internal.pageSize.getHeight();
-      const maxW = pageW - margin*2;
-
-      docPDF.setFont("times", "normal");
-      docPDF.setFontSize(16);
-      docPDF.text("Catatan Ibadah", margin, margin);
-
-      docPDF.setFontSize(12);
-      const text = buildText(note);
-      const lines = docPDF.splitTextToSize(text, maxW);
-      let y = margin + 26;
-
-      for(const line of lines){
-        if(y > pageH - margin){
-          docPDF.addPage();
-          y = margin;
-        }
-        docPDF.text(line, margin, y);
-        y += 16;
-      }
-
-      const safeName = (note.hariTanggal || "catatan")
-        .toString()
-        .replace(/[^\w\d]+/g, "_")
-        .slice(0, 40);
-
-      docPDF.save(`CatatanIbadah_${safeName}.pdf`);
-      showToast("PDF diunduh!");
-    }
-
-    // ---------- Firestore ----------
-    const NOTES_COL = collection(db, "notes");
-
-    async function fetchNotes(){
-      const qy = query(NOTES_COL, orderBy("createdAt", "desc"));
-      const snap = await getDocs(qy);
-      return snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    }
-    async function addNote(note){
-      await addDoc(NOTES_COL, note);
-    }
-    async function deleteNote(noteId){
-      await deleteDoc(doc(db, "notes", noteId));
-    }
-
-    // ---------- Router ----------
-    const routes = {
-      login: renderLogin,
-      home: renderHome,
-      form: renderForm,
-      list: renderList,
-    };
-    let currentRoute = "login";
-    function navigate(route){
-      currentRoute = route;
-      routes[route]();
-    }
-
-    // ---------- Topbar ----------
-    const settingsBtn = $("#settingsBtn");
-    const settingsPop = $("#settingsPop");
-    const themeToggle = $("#themeToggle");
-    const backBtn = $("#backBtn");
-    const pageTitle = $("#pageTitle");
-
-    settingsBtn.addEventListener("click", (e)=>{
-      e.stopPropagation();
-      const isOpen = settingsPop.style.display === "block";
-      settingsPop.style.display = isOpen ? "none" : "block";
-      settingsPop.setAttribute("aria-hidden", isOpen ? "true" : "false");
-    });
-
-    document.addEventListener("click", (e)=>{
-      if(!settingsPop.contains(e.target) && e.target !== settingsBtn){
-        settingsPop.style.display = "none";
-        settingsPop.setAttribute("aria-hidden", "true");
-      }
-    });
-
-    themeToggle.addEventListener("change", ()=>{
-      saveTheme(themeToggle.checked ? "dark" : "light");
-    });
-
-    backBtn.addEventListener("click", ()=>{
-      if(auth.currentUser) navigate("home");
-      else navigate("login");
-    });
-
-    function updateTopbar(){
-      if(currentRoute === "login" || currentRoute === "home"){
-        pageTitle.textContent = "Catatan Ibadah";
-        pageTitle.className = "title";
-        backBtn.style.visibility = "hidden";
-      } else if(currentRoute === "form"){
-        pageTitle.textContent = "Isi Catatan";
-        pageTitle.className = "subtitle";
-        backBtn.style.visibility = "visible";
-      } else {
-        pageTitle.textContent = "Lihat Catatan";
-        pageTitle.className = "subtitle";
-        backBtn.style.visibility = "visible";
-      }
-    }
-
-    // ---------- Screens ----------
+    // Screens
     function renderLogin(){
       updateTopbar();
-      const view = $("#view");
-      view.innerHTML = `
+      $("#view").innerHTML = `
         <div class="card" style="max-width:520px;">
-          <div style="font-size:20px;color:var(--sky);text-align:center;margin-bottom:10px;">
-            Login
-          </div>
+          <div style="font-size:20px;color:var(--sky);text-align:center;margin-bottom:10px;">Login</div>
 
           <div style="background:rgba(102,191,255,.14); border:1px solid var(--border); padding:12px; border-radius:14px; margin-bottom:12px;">
-            <div style="font-size:16px; color:var(--text);">Akun yang digunakan:</div>
-            <div style="margin-top:6px; font-size:16px;">
+            <div style="font-size:16px;color:var(--text);">Akun yang digunakan:</div>
+            <div style="margin-top:6px;font-size:16px;">
               Email: <b>${SHARED_EMAIL}</b><br/>
               Password: <b>${SHARED_PASSWORD}</b>
-            </div>
-            <div style="margin-top:8px; font-size:13px; color:var(--muted);">
-              (Akun ini dipakai bersama agar semua orang melihat catatan yang sama.)
             </div>
           </div>
 
           <div class="form" style="grid-template-columns:1fr;">
             <div class="field full">
               <label>Email</label>
-              <input id="loginEmail" type="email" value="${SHARED_EMAIL}" />
+              <input id="loginEmail" type="email" value="${SHARED_EMAIL}">
             </div>
             <div class="field full">
               <label>Password</label>
-              <input id="loginPass" type="password" value="${SHARED_PASSWORD}" />
+              <input id="loginPass" type="password" value="${SHARED_PASSWORD}">
             </div>
             <div class="actions full">
               <button class="btn btn-primary" id="loginBtn" type="button">Masuk</button>
@@ -635,14 +354,10 @@
           </div>
         </div>
       `;
-
       $("#loginBtn").addEventListener("click", async ()=>{
-        const email = $("#loginEmail").value.trim();
-        const pass = $("#loginPass").value;
         try{
-          await signInWithEmailAndPassword(auth, email, pass);
+          await window.__fs.signIn($("#loginEmail").value.trim(), $("#loginPass").value);
           showToast("Login berhasil.");
-          navigate("home");
         }catch(err){
           alert("Login gagal: " + (err?.message || err));
         }
@@ -651,34 +366,27 @@
 
     function renderHome(){
       updateTopbar();
-      const view = $("#view");
-      view.innerHTML = `
+      $("#view").innerHTML = `
         <div class="menu">
           <button class="menu-btn" id="goForm">Isi Catatan</button>
           <button class="menu-btn" id="goList">Lihat Catatan</button>
         </div>
-
         <div class="hint">
           Link Gdrive: https://drive.google.com/drive/folders/18Xl1jvDChDXMxQwO1cnCumihQggp45-M?usp=sharing
-          <small>
-            <button class="btn" id="logoutBtn" type="button">Logout</button>
-          </small>
+          <small><button class="btn" id="logoutBtn" type="button">Logout</button></small>
         </div>
       `;
       $("#goForm").addEventListener("click", ()=> navigate("form"));
       $("#goList").addEventListener("click", ()=> navigate("list"));
       $("#logoutBtn").addEventListener("click", async ()=>{
-        await signOut(auth);
+        await window.__fs.signOut();
         showToast("Logout.");
-        navigate("login");
       });
     }
 
     function renderForm(){
       updateTopbar();
-      const view = $("#view");
-
-      view.innerHTML = `
+      $("#view").innerHTML = `
         <div class="card">
           <div class="form">
             <div class="field full">
@@ -693,86 +401,34 @@
 
             <div class="field full">
               <label>Kolom:</label>
-              <select id="kolom" disabled>
-                <option value="7" selected>7</option>
-              </select>
+              <select disabled><option selected>7</option></select>
             </div>
 
-            <div class="field full">
-              <label>Hari/Tanggal:</label>
-              <input id="hariTanggal" type="text" placeholder="Tulis di sini" />
-            </div>
+            <div class="field full"><label>Hari/Tanggal:</label><input id="hariTanggal" type="text"></div>
+            <div class="field full"><label>Tempat Ibadah:</label><input id="tempatIbadah" type="text"></div>
+            <div class="field full"><label>Khadim:</label><input id="khadim" type="text"></div>
 
-            <div class="field full">
-              <label>Tempat Ibadah:</label>
-              <input id="tempatIbadah" type="text" placeholder="Tulis di sini" />
-            </div>
+            <div class="field full"><label>MC:</label><input id="mc" type="text"></div>
 
-            <div class="field full">
-              <label>Khadim:</label>
-              <input id="khadim" type="text" placeholder="Tulis di sini" />
-            </div>
+            <div class="field"><label>Pundi 1: Rp</label><input id="p1" inputmode="numeric"></div>
+            <div class="field"><label>Pundi 2: Rp</label><input id="p2" inputmode="numeric"></div>
+            <div class="field"><label>Pundi 3: Rp</label><input id="p3" inputmode="numeric"></div>
 
-            <!-- Baru: MC di antara Khadim dan Pundi 1 -->
-            <div class="field full">
-              <label>MC:</label>
-              <input id="mc" type="text" placeholder="Tulis di sini" />
-            </div>
+            <div class="field" id="p4Wrap" style="display:none;"><label>Pundi 4: Rp</label><input id="p4" inputmode="numeric"></div>
 
-            <div class="field">
-              <label>Pundi 1: Rp</label>
-              <input id="pundi1" inputmode="numeric" placeholder="0" />
-            </div>
-            <div class="field">
-              <label>Pundi 2: Rp</label>
-              <input id="pundi2" inputmode="numeric" placeholder="0" />
-            </div>
+            <div class="field"><label>Partisipasi Keluarga: Rp</label><input id="part" inputmode="numeric"></div>
 
-            <div class="field">
-              <label>Pundi 3: Rp</label>
-              <input id="pundi3" inputmode="numeric" placeholder="0" />
-            </div>
+            <div class="field full" id="kotakWrap" style="display:none;"><label>Kotak: Rp</label><input id="kotak" inputmode="numeric"></div>
 
-            <!-- WKI saja: Pundi 4 -->
-            <div class="field" id="pundi4Wrap" style="display:none;">
-              <label>Pundi 4: Rp</label>
-              <input id="pundi4" inputmode="numeric" placeholder="0" />
-            </div>
+            <div class="field full"><label>Jumlah: Rp (Otomatis)</label><input id="jumlah" readonly></div>
 
-            <div class="field">
-              <label>Partisipasi Keluarga: Rp</label>
-              <input id="partisipasi" inputmode="numeric" placeholder="0" />
-            </div>
+            <div class="field full"><label>Kehadiran (angka saja):</label><input id="kehadiran" inputmode="numeric"></div>
 
-            <!-- Kolom saja: Kotak -->
-            <div class="field full" id="kotakWrap" style="display:none;">
-              <label>Kotak: Rp</label>
-              <input id="kotak" inputmode="numeric" placeholder="0" />
-            </div>
-
-            <div class="field full">
-              <label>Jumlah: Rp (Otomatis)</label>
-              <input id="jumlah" type="text" readonly />
-            </div>
-
-            <!-- Baru: Kehadiran (angka saja) di bawah jumlah (semua jenis) -->
-            <div class="field full">
-              <label>Kehadiran (angka saja):</label>
-              <input id="kehadiran" inputmode="numeric" placeholder="0" />
-            </div>
-
-            <!-- Kolom saja: wanita/pria tetap ada sesuai versi sebelumnya -->
             <div class="field full" id="hadirWrap" style="display:none;">
               <label>Jumlah yang hadir:</label>
               <div class="row2">
-                <div class="field">
-                  <label>Wanita (angka saja)</label>
-                  <input id="hadirWanita" inputmode="numeric" placeholder="0" />
-                </div>
-                <div class="field">
-                  <label>Pria (angka saja)</label>
-                  <input id="hadirPria" inputmode="numeric" placeholder="0" />
-                </div>
+                <div class="field"><label>Wanita (angka saja)</label><input id="hadirW" inputmode="numeric"></div>
+                <div class="field"><label>Pria (angka saja)</label><input id="hadirP" inputmode="numeric"></div>
               </div>
             </div>
 
@@ -785,156 +441,106 @@
       `;
 
       const el = {
-        namaIbadah: $("#namaIbadah"),
-        hariTanggal: $("#hariTanggal"),
-        tempatIbadah: $("#tempatIbadah"),
-        khadim: $("#khadim"),
-        mc: $("#mc"),
-        pundi1: $("#pundi1"),
-        pundi2: $("#pundi2"),
-        pundi3: $("#pundi3"),
-        pundi4Wrap: $("#pundi4Wrap"),
-        pundi4: $("#pundi4"),
-        partisipasi: $("#partisipasi"),
-        kotakWrap: $("#kotakWrap"),
-        kotak: $("#kotak"),
+        jenis: $("#namaIbadah"),
+        p1: $("#p1"), p2: $("#p2"), p3: $("#p3"), p4: $("#p4"),
+        part: $("#part"), kotak: $("#kotak"),
+        p4Wrap: $("#p4Wrap"), kotakWrap: $("#kotakWrap"),
+        hadirWrap: $("#hadirWrap"), hadirW: $("#hadirW"), hadirP: $("#hadirP"),
         jumlah: $("#jumlah"),
-        kehadiran: $("#kehadiran"),
-        hadirWrap: $("#hadirWrap"),
-        hadirWanita: $("#hadirWanita"),
-        hadirPria: $("#hadirPria"),
+        kehadiran: $("#kehadiran")
       };
 
-      function setVisibility(){
-        const jenis = el.namaIbadah.value;
-        const isKolom = jenis === "Kolom";
-        const isWKI = jenis === "WKI";
-
-        el.kotakWrap.style.display = isKolom ? "block" : "none";
-        el.hadirWrap.style.display = isKolom ? "block" : "none";
-
-        el.pundi4Wrap.style.display = isWKI ? "block" : "none";
-
-        // reset field khusus jika pindah jenis
-        if(!isKolom){ el.kotak.value = ""; el.hadirWanita.value = ""; el.hadirPria.value = ""; }
-        if(!isWKI){ el.pundi4.value = ""; }
-
-        computeJumlah();
-      }
-
-      function attachRupiahFormat(input){
+      function attachRupiah(input){
         input.addEventListener("input", ()=>{
-          const digits = onlyDigits(input.value);
-          input.value = formatRupiahFromDigits(digits);
+          input.value = formatRupiahFromDigits(onlyDigits(input.value));
           computeJumlah();
         });
       }
-      function attachOnlyNumber(input){
+      function onlyNumber(input){
         input.addEventListener("input", ()=> input.value = onlyDigits(input.value));
       }
 
+      function setVisibility(){
+        const jenis = el.jenis.value;
+        const isKolom = jenis==="Kolom";
+        const isWKI = jenis==="WKI";
+
+        el.kotakWrap.style.display = isKolom ? "block":"none";
+        el.hadirWrap.style.display = isKolom ? "block":"none";
+        el.p4Wrap.style.display = isWKI ? "block":"none";
+
+        if(!isKolom){ el.kotak.value=""; el.hadirW.value=""; el.hadirP.value=""; }
+        if(!isWKI){ el.p4.value=""; }
+        computeJumlah();
+      }
+
       function computeJumlah(){
-        const jenis = el.namaIbadah.value;
-        const p1 = parseRupiahToNumber(el.pundi1.value);
-        const p2 = parseRupiahToNumber(el.pundi2.value);
-        const p3 = parseRupiahToNumber(el.pundi3.value);
-        const p4 = parseRupiahToNumber(el.pundi4.value);
-        const part = parseRupiahToNumber(el.partisipasi.value);
-        const kotak = parseRupiahToNumber(el.kotak.value);
+        const jenis = el.jenis.value;
+        const p1=parseRupiahToNumber(el.p1.value);
+        const p2=parseRupiahToNumber(el.p2.value);
+        const p3=parseRupiahToNumber(el.p3.value);
+        const p4=parseRupiahToNumber(el.p4.value);
+        const part=parseRupiahToNumber(el.part.value);
+        const kotak=parseRupiahToNumber(el.kotak.value);
 
-        let sum = 0;
-
-        // Urutan benar (sesuai request):
-        // P/R    = P1 + P2 + P3 + Partisipasi
-        // Kolom  = P1 + P2 + P3 + Partisipasi + Kotak
-        // WKI    = P1 + P2 + P3 + P4 + Partisipasi
-        if(jenis === "WKI"){
-          sum = p1 + p2 + p3 + p4 + part;
-        }else if(jenis === "Kolom"){
-          sum = p1 + p2 + p3 + part + kotak;
-        }else{
-          sum = p1 + p2 + p3 + part;
-        }
+        let sum=0;
+        // urutan sesuai permintaan
+        if(jenis==="WKI") sum = p1+p2+p3+p4+part;
+        else if(jenis==="Kolom") sum = p1+p2+p3+part+kotak;
+        else sum = p1+p2+p3+part;
 
         el.jumlah.value = formatRupiah(sum);
       }
 
       function resetForm(){
-        el.namaIbadah.value = "";
-        el.hariTanggal.value = "";
-        el.tempatIbadah.value = "";
-        el.khadim.value = "";
-        el.mc.value = "";
-        el.pundi1.value = "";
-        el.pundi2.value = "";
-        el.pundi3.value = "";
-        el.pundi4.value = "";
-        el.partisipasi.value = "";
-        el.kotak.value = "";
-        el.jumlah.value = "";
-        el.kehadiran.value = "";
-        el.hadirWanita.value = "";
-        el.hadirPria.value = "";
-
-        el.kotakWrap.style.display = "none";
-        el.hadirWrap.style.display = "none";
-        el.pundi4Wrap.style.display = "none";
+        $("#namaIbadah").value="";
+        ["hariTanggal","tempatIbadah","khadim","mc"].forEach(id=> $("#"+id).value="");
+        [el.p1,el.p2,el.p3,el.p4,el.part,el.kotak].forEach(x=> x.value="");
+        el.jumlah.value="";
+        el.kehadiran.value="";
+        el.hadirW.value=""; el.hadirP.value="";
+        el.p4Wrap.style.display="none";
+        el.kotakWrap.style.display="none";
+        el.hadirWrap.style.display="none";
       }
 
-      el.namaIbadah.addEventListener("change", setVisibility);
+      el.jenis.addEventListener("change", setVisibility);
+      [el.p1,el.p2,el.p3,el.p4,el.part,el.kotak].forEach(attachRupiah);
+      [el.kehadiran, el.hadirW, el.hadirP].forEach(onlyNumber);
 
-      attachRupiahFormat(el.pundi1);
-      attachRupiahFormat(el.pundi2);
-      attachRupiahFormat(el.pundi3);
-      attachRupiahFormat(el.pundi4);
-      attachRupiahFormat(el.partisipasi);
-      attachRupiahFormat(el.kotak);
-
-      attachOnlyNumber(el.kehadiran);
-      attachOnlyNumber(el.hadirWanita);
-      attachOnlyNumber(el.hadirPria);
-
-      $("#resetBtn").addEventListener("click", ()=>{
-        resetForm();
-        showToast("Form direset.");
-      });
+      $("#resetBtn").addEventListener("click", ()=>{ resetForm(); showToast("Form direset."); });
 
       $("#saveBtn").addEventListener("click", async ()=>{
-        if(!el.namaIbadah.value){
-          alert("Nama Ibadah harus dipilih (Kolom / P/R / WKI).");
-          return;
-        }
-
-        const jenis = el.namaIbadah.value;
+        const jenis = $("#namaIbadah").value;
+        if(!jenis){ alert("Nama Ibadah harus dipilih (Kolom / P/R / WKI)."); return; }
 
         const note = {
           createdAt: new Date().toISOString(),
           namaIbadah: jenis,
           kolom: "7",
-          hariTanggal: el.hariTanggal.value.trim(),
-          tempatIbadah: el.tempatIbadah.value.trim(),
-          khadim: el.khadim.value.trim(),
-          mc: el.mc.value.trim(),
+          hariTanggal: $("#hariTanggal").value.trim(),
+          tempatIbadah: $("#tempatIbadah").value.trim(),
+          khadim: $("#khadim").value.trim(),
+          mc: $("#mc").value.trim(),
 
-          pundi1: parseRupiahToNumber(el.pundi1.value),
-          pundi2: parseRupiahToNumber(el.pundi2.value),
-          pundi3: parseRupiahToNumber(el.pundi3.value),
-          pundi4: (jenis === "WKI" ? parseRupiahToNumber(el.pundi4.value) : 0),
+          pundi1: parseRupiahToNumber(el.p1.value),
+          pundi2: parseRupiahToNumber(el.p2.value),
+          pundi3: parseRupiahToNumber(el.p3.value),
+          pundi4: (jenis==="WKI" ? parseRupiahToNumber(el.p4.value) : 0),
 
-          partisipasi: parseRupiahToNumber(el.partisipasi.value),
-
-          kotak: (jenis === "Kolom" ? parseRupiahToNumber(el.kotak.value) : 0),
+          partisipasi: parseRupiahToNumber(el.part.value),
+          kotak: (jenis==="Kolom" ? parseRupiahToNumber(el.kotak.value) : 0),
 
           jumlah: parseRupiahToNumber(el.jumlah.value),
 
-          kehadiran: (el.kehadiran.value ? Number(el.kehadiran.value) : 0),
+          kehadiran: ($("#kehadiran").value ? Number($("#kehadiran").value) : 0),
 
-          hadirWanita: (jenis === "Kolom" ? (el.hadirWanita.value ? Number(el.hadirWanita.value) : 0) : null),
-          hadirPria: (jenis === "Kolom" ? (el.hadirPria.value ? Number(el.hadirPria.value) : 0) : null),
+          hadirWanita: (jenis==="Kolom" ? ($("#hadirW").value ? Number($("#hadirW").value) : 0) : null),
+          hadirPria:   (jenis==="Kolom" ? ($("#hadirP").value ? Number($("#hadirP").value) : 0) : null),
         };
 
         try{
-          await addNote(note);
+          await window.__fs.addNote(note);
           await downloadPDF(note);
           resetForm();
           showToast("Catatan tersimpan online.");
@@ -948,31 +554,27 @@
 
     async function renderList(){
       updateTopbar();
-      const view = $("#view");
-
-      view.innerHTML = `
+      $("#view").innerHTML = `
         <div class="card">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
             <div style="display:flex;flex-direction:column;gap:4px;">
               <div style="font-size:18px;color:var(--text)">Daftar Catatan (Online)</div>
-              <div style="font-size:14px;color:var(--muted)">Klik item untuk detail. Salin / Download. (Ada tombol hapus per item)</div>
+              <div style="font-size:14px;color:var(--muted)">Klik item untuk detail. Salin / Download. (Ada tombol hapus)</div>
             </div>
             <button class="btn" id="refreshBtn" type="button">Refresh</button>
           </div>
         </div>
         <div class="list" id="list"></div>
       `;
-
       $("#refreshBtn").addEventListener("click", ()=> renderList());
 
-      const list = $("#list");
+      const list=$("#list");
       list.innerHTML = `<div class="card" style="text-align:center;color:var(--muted);">Memuat data...</div>`;
 
-      let notes = [];
-      try{
-        notes = await fetchNotes();
-      }catch(err){
-        list.innerHTML = `<div class="card" style="color:var(--danger);">Gagal memuat data: ${escapeHtml(err?.message || err)}</div>`;
+      let notes=[];
+      try{ notes = await window.__fs.fetchNotes(); }
+      catch(err){
+        list.innerHTML = `<div class="card" style="color:var(--danger);">Gagal memuat: ${escapeHtml(err?.message||err)}</div>`;
         return;
       }
 
@@ -997,9 +599,7 @@
                 <button class="mini" data-action="del" title="Hapus">🗑️</button>
               </div>
             </div>
-            <div class="item-body">
-              <pre>${escapeHtml(buildText(n))}</pre>
-            </div>
+            <div class="item-body"><pre>${escapeHtml(buildText(n))}</pre></div>
           </div>
         `;
       }).join("");
@@ -1011,15 +611,15 @@
         const note = notes.find(x=>x.id===id);
         if(!note) return;
 
-        const actionBtn = e.target.closest("[data-action]");
-        if(actionBtn){
-          const action = actionBtn.getAttribute("data-action");
-          if(action === "copy"){ await copyToClipboard(buildText(note)); return; }
-          if(action === "pdf"){ await downloadPDF(note); return; }
-          if(action === "del"){
+        const ab = e.target.closest("[data-action]");
+        if(ab){
+          const action = ab.getAttribute("data-action");
+          if(action==="copy"){ await copyToClipboard(buildText(note)); return; }
+          if(action==="pdf"){ await downloadPDF(note); return; }
+          if(action==="del"){
             if(confirm("Hapus catatan ini?")){
               try{
-                await deleteNote(id);
+                await window.__fs.deleteNote(id);
                 showToast("Catatan dihapus.");
                 renderList();
               }catch(err){
@@ -1030,89 +630,14 @@
           }
         }
 
-        const body = item.querySelector(".item-body");
-        body.style.display = (body.style.display === "block") ? "none" : "block";
+        const body=item.querySelector(".item-body");
+        body.style.display = (body.style.display==="block") ? "none":"block";
       });
     }
 
-    // ---------- Login & Home ----------
-    function renderLogin(){
-      updateTopbar();
-      const view = $("#view");
-      view.innerHTML = `
-        <div class="card" style="max-width:520px;">
-          <div style="font-size:20px;color:var(--sky);text-align:center;margin-bottom:10px;">Login</div>
-
-          <div style="background:rgba(102,191,255,.14); border:1px solid var(--border); padding:12px; border-radius:14px; margin-bottom:12px;">
-            <div style="font-size:16px; color:var(--text);">Akun yang digunakan:</div>
-            <div style="margin-top:6px; font-size:16px;">
-              Email: <b>${SHARED_EMAIL}</b><br/>
-              Password: <b>${SHARED_PASSWORD}</b>
-            </div>
-            <div style="margin-top:8px; font-size:13px; color:var(--muted);">
-              (Akun ini dipakai bersama agar semua orang melihat catatan yang sama.)
-            </div>
-          </div>
-
-          <div class="form" style="grid-template-columns:1fr;">
-            <div class="field full">
-              <label>Email</label>
-              <input id="loginEmail" type="email" value="${SHARED_EMAIL}" />
-            </div>
-            <div class="field full">
-              <label>Password</label>
-              <input id="loginPass" type="password" value="${SHARED_PASSWORD}" />
-            </div>
-            <div class="actions full">
-              <button class="btn btn-primary" id="loginBtn" type="button">Masuk</button>
-            </div>
-          </div>
-        </div>
-      `;
-
-      $("#loginBtn").addEventListener("click", async ()=>{
-        const email = $("#loginEmail").value.trim();
-        const pass = $("#loginPass").value;
-        try{
-          await signInWithEmailAndPassword(auth, email, pass);
-          showToast("Login berhasil.");
-          navigate("home");
-        }catch(err){
-          alert("Login gagal: " + (err?.message || err));
-        }
-      });
-    }
-
-    function renderHome(){
-      updateTopbar();
-      const view = $("#view");
-      view.innerHTML = `
-        <div class="menu">
-          <button class="menu-btn" id="goForm">Isi Catatan</button>
-          <button class="menu-btn" id="goList">Lihat Catatan</button>
-        </div>
-
-        <div class="hint">
-          Link Gdrive: https://drive.google.com/drive/folders/18Xl1jvDChDXMxQwO1cnCumihQggp45-M?usp=sharing
-          <small><button class="btn" id="logoutBtn" type="button">Logout</button></small>
-        </div>
-      `;
-      $("#goForm").addEventListener("click", ()=> navigate("form"));
-      $("#goList").addEventListener("click", ()=> navigate("list"));
-      $("#logoutBtn").addEventListener("click", async ()=>{
-        await signOut(auth);
-        showToast("Logout.");
-        navigate("login");
-      });
-    }
-
-    // ---------- Init ----------
+    // Start
     loadTheme();
-
-    onAuthStateChanged(auth, (user)=>{
-      if(user) navigate("home");
-      else navigate("login");
-    });
+    boot();
   </script>
 </body>
 </html>
