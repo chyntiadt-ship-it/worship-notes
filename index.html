@@ -109,13 +109,17 @@
             <div style="font-size:16px;color:var(--text)">Tema</div>
             <div style="font-size:13px;color:var(--muted)">Light / Dark</div>
           </div>
-          <label class="switch"><input type="checkbox" id="themeToggle" /></label>
+          <label class="switch">
+            <input type="checkbox" id="themeToggle" />
+          </label>
         </div>
       </div>
     </div>
 
     <div class="container" id="view">
-      <div class="card" style="max-width:720px; text-align:center; color:var(--muted);">Memuat aplikasi...</div>
+      <div class="card" style="max-width:720px; text-align:center; color:var(--muted);">
+        Memuat aplikasi...
+      </div>
     </div>
 
     <div class="toast" id="toast"></div>
@@ -124,8 +128,8 @@
   <script type="module">
     const $ = (s)=>document.querySelector(s);
 
-    // Theme
-    const THEME_KEY = "catatan-ibadah.theme.shared.v5";
+    // Tema
+    const THEME_KEY = "catatan-ibadah.theme.shared.v3";
     function saveTheme(theme){
       localStorage.setItem(THEME_KEY, theme);
       $("#app").setAttribute("data-theme", theme);
@@ -140,16 +144,20 @@
       clearTimeout(showToast._tm);
       showToast._tm=setTimeout(()=>t.style.display="none", 1600);
     }
+
     function showFatal(msg){
       $("#view").innerHTML = `
         <div class="card" style="max-width:820px;">
           <div style="font-size:18px;color:var(--danger);">Aplikasi tidak bisa berjalan</div>
           <div style="margin-top:8px; color:var(--text); white-space:pre-wrap;">${msg}</div>
-          <div style="margin-top:10px; color:var(--muted); font-size:14px;">Buka F12 → Console untuk detail error.</div>
-        </div>`;
+          <div style="margin-top:10px; color:var(--muted); font-size:14px;">
+            Buka F12 → Console untuk lihat detail error.
+          </div>
+        </div>
+      `;
     }
 
-    // Settings popover
+    // Pengaturan popover
     const settingsBtn=$("#settingsBtn");
     const settingsPop=$("#settingsPop");
     const themeToggle=$("#themeToggle");
@@ -158,14 +166,17 @@
 
     settingsBtn.addEventListener("click",(e)=>{
       e.stopPropagation();
-      settingsPop.style.display = (settingsPop.style.display==="block") ? "none" : "block";
+      const open = settingsPop.style.display==="block";
+      settingsPop.style.display = open ? "none":"block";
     });
     document.addEventListener("click",(e)=>{
-      if(!settingsPop.contains(e.target) && e.target!==settingsBtn) settingsPop.style.display="none";
+      if(!settingsPop.contains(e.target) && e.target!==settingsBtn){
+        settingsPop.style.display="none";
+      }
     });
     themeToggle.addEventListener("change", ()=> saveTheme(themeToggle.checked ? "dark":"light"));
 
-    // Rupiah helpers
+    // Format angka rupiah
     function onlyDigits(str){ return (str||"").replace(/[^\d]/g,""); }
     function formatRupiahFromDigits(d){ if(!d) return ""; d=d.replace(/^0+(?=\d)/,""); return d.replace(/\B(?=(\d{3})+(?!\d))/g,"."); }
     function parseRupiahToNumber(f){ const d=onlyDigits(f); return d?Number(d):0; }
@@ -176,7 +187,7 @@
         .replaceAll('"',"&quot;").replaceAll("'","&#039;");
     }
 
-    // Catatan text untuk salin/PDF
+    // ✅ MC dan Kehadiran hanya muncul di output kalau WKI
     function buildText(note){
       const lines=[];
       lines.push(`Nama Ibadah: ${note.namaIbadah||"-"}`);
@@ -185,25 +196,16 @@
       lines.push(`Tempat Ibadah: ${note.tempatIbadah||"-"}`);
       lines.push(`Khadim: ${note.khadim||"-"}`);
 
-      // MC & Kehadiran hanya WKI
       if(note.namaIbadah==="WKI"){
-        lines.push(`MC: ${note.mc || "-"}`);
+        lines.push(`MC: ${note.mc||"-"}`);
       }
 
       lines.push(`Pundi 1: Rp ${formatRupiah(note.pundi1)}`);
       lines.push(`Pundi 2: Rp ${formatRupiah(note.pundi2)}`);
       lines.push(`Pundi 3: Rp ${formatRupiah(note.pundi3)}`);
-
-      if(note.namaIbadah==="WKI"){
-        lines.push(`Pundi 4: Rp ${formatRupiah(note.pundi4)}`);
-      }
-
+      if(note.namaIbadah==="WKI") lines.push(`Pundi 4: Rp ${formatRupiah(note.pundi4)}`);
       lines.push(`Partisipasi Keluarga: Rp ${formatRupiah(note.partisipasi)}`);
-
-      if(note.namaIbadah==="Kolom"){
-        lines.push(`Kotak: Rp ${formatRupiah(note.kotak)}`);
-      }
-
+      if(note.namaIbadah==="Kolom") lines.push(`Kotak: Rp ${formatRupiah(note.kotak)}`);
       lines.push(`Jumlah: Rp ${formatRupiah(note.jumlah)}`);
 
       if(note.namaIbadah==="WKI"){
@@ -214,7 +216,6 @@
         lines.push(`Jumlah yang hadir - Wanita: ${note.hadirWanita ?? "-"}`);
         lines.push(`Jumlah yang hadir - Pria: ${note.hadirPria ?? "-"}`);
       }
-
       return lines.join("\n");
     }
 
@@ -251,13 +252,12 @@
         if(y>pageH-margin){ docPDF.addPage(); y=margin; }
         docPDF.text(line, margin, y); y+=16;
       }
-
       const safe=(note.hariTanggal||"catatan").toString().replace(/[^\w\d]+/g,"_").slice(0,40);
       docPDF.save(`CatatanIbadah_${safe}.pdf`);
       showToast("PDF diunduh!");
     }
 
-    // Router
+    // Routing
     const routes = { login:renderLogin, home:renderHome, form:renderForm, list:renderList };
     let currentRoute="login";
     function navigate(r){ currentRoute=r; routes[r](); }
@@ -271,7 +271,9 @@
       }
     }
 
-    // Firebase config
+    // Firebase init
+    let auth, db, NOTES_COL;
+
     const firebaseConfig = {
       apiKey: "AIzaSyDx0Pe-kYuza_i1GRs3arSINomyJtsH6Ik",
       authDomain: "catatanibadah-9d2ab.firebaseapp.com",
@@ -281,10 +283,9 @@
       appId: "1:625603481790:web:6e2d4a1f1eb4f7356b8eef",
       measurementId: "G-GBYCNCHTF6"
     };
+
     const SHARED_EMAIL = "admin@gmail.com";
     const SHARED_PASSWORD = "admin123";
-
-    let auth, db, NOTES_COL;
 
     async function boot(){
       try{
@@ -317,7 +318,10 @@
         });
 
       }catch(err){
-        showFatal("Detail:\n" + (err?.message || err));
+        showFatal(
+          "Kemungkinan besar ada error load Firebase module / diblokir jaringan.\n\n" +
+          "Detail:\n" + (err?.message || err)
+        );
       }
     }
 
@@ -338,9 +342,17 @@
           </div>
 
           <div class="form" style="grid-template-columns:1fr;">
-            <div class="field full"><label>Email</label><input id="loginEmail" type="email" value="${SHARED_EMAIL}"></div>
-            <div class="field full"><label>Password</label><input id="loginPass" type="password" value="${SHARED_PASSWORD}"></div>
-            <div class="actions full"><button class="btn btn-primary" id="loginBtn" type="button">Masuk</button></div>
+            <div class="field full">
+              <label>Email</label>
+              <input id="loginEmail" type="email" value="${SHARED_EMAIL}">
+            </div>
+            <div class="field full">
+              <label>Password</label>
+              <input id="loginPass" type="password" value="${SHARED_PASSWORD}">
+            </div>
+            <div class="actions full">
+              <button class="btn btn-primary" id="loginBtn" type="button">Masuk</button>
+            </div>
           </div>
         </div>
       `;
@@ -398,7 +410,7 @@
             <div class="field full"><label>Tempat Ibadah:</label><input id="tempatIbadah" type="text"></div>
             <div class="field full"><label>Khadim:</label><input id="khadim" type="text"></div>
 
-            <!-- MC hanya WKI -->
+            <!-- ✅ MC hanya WKI -->
             <div class="field full" id="mcWrap" style="display:none;">
               <label>MC:</label><input id="mc" type="text">
             </div>
@@ -407,22 +419,19 @@
             <div class="field"><label>Pundi 2: Rp</label><input id="p2" inputmode="numeric"></div>
             <div class="field"><label>Pundi 3: Rp</label><input id="p3" inputmode="numeric"></div>
 
-            <!-- WKI saja: Pundi 4 -->
             <div class="field" id="p4Wrap" style="display:none;"><label>Pundi 4: Rp</label><input id="p4" inputmode="numeric"></div>
 
             <div class="field"><label>Partisipasi Keluarga: Rp</label><input id="part" inputmode="numeric"></div>
 
-            <!-- Kolom saja: Kotak -->
             <div class="field full" id="kotakWrap" style="display:none;"><label>Kotak: Rp</label><input id="kotak" inputmode="numeric"></div>
 
             <div class="field full"><label>Jumlah: Rp (Otomatis)</label><input id="jumlah" readonly></div>
 
-            <!-- Kehadiran hanya WKI -->
+            <!-- ✅ Kehadiran hanya WKI -->
             <div class="field full" id="kehadiranWrap" style="display:none;">
               <label>Kehadiran (angka saja):</label><input id="kehadiran" inputmode="numeric">
             </div>
 
-            <!-- Kolom saja: wanita/pria -->
             <div class="field full" id="hadirWrap" style="display:none;">
               <label>Jumlah yang hadir:</label>
               <div class="row2">
@@ -441,12 +450,17 @@
 
       const el = {
         jenis: $("#namaIbadah"),
-        mcWrap: $("#mcWrap"), mc: $("#mc"),
-        kehadiranWrap: $("#kehadiranWrap"), kehadiran: $("#kehadiran"),
-        p4Wrap: $("#p4Wrap"), p4: $("#p4"),
-        kotakWrap: $("#kotakWrap"), kotak: $("#kotak"),
+
+        mcWrap: $("#mcWrap"),
+        mc: $("#mc"),
+
+        kehadiranWrap: $("#kehadiranWrap"),
+        kehadiran: $("#kehadiran"),
+
+        p1: $("#p1"), p2: $("#p2"), p3: $("#p3"), p4: $("#p4"),
+        part: $("#part"), kotak: $("#kotak"),
+        p4Wrap: $("#p4Wrap"), kotakWrap: $("#kotakWrap"),
         hadirWrap: $("#hadirWrap"), hadirW: $("#hadirW"), hadirP: $("#hadirP"),
-        p1: $("#p1"), p2: $("#p2"), p3: $("#p3"), part: $("#part"),
         jumlah: $("#jumlah"),
       };
 
@@ -465,15 +479,26 @@
         const isKolom = jenis==="Kolom";
         const isWKI = jenis==="WKI";
 
+        // Kolom: kotak + hadir wanita/pria
         el.kotakWrap.style.display = isKolom ? "block":"none";
         el.hadirWrap.style.display = isKolom ? "block":"none";
 
+        // WKI: pundi 4 + MC + kehadiran
         el.p4Wrap.style.display = isWKI ? "block":"none";
         el.mcWrap.style.display = isWKI ? "block":"none";
         el.kehadiranWrap.style.display = isWKI ? "block":"none";
 
-        if(!isKolom){ el.kotak.value=""; el.hadirW.value=""; el.hadirP.value=""; }
-        if(!isWKI){ el.p4.value=""; el.mc.value=""; el.kehadiran.value=""; }
+        // bersihkan saat tidak relevan
+        if(!isKolom){
+          el.kotak.value="";
+          el.hadirW.value="";
+          el.hadirP.value="";
+        }
+        if(!isWKI){
+          el.p4.value="";
+          el.mc.value="";
+          el.kehadiran.value="";
+        }
 
         computeJumlah();
       }
@@ -488,9 +513,9 @@
         const kotak=parseRupiahToNumber(el.kotak.value);
 
         let sum=0;
-        if(jenis==="WKI") sum = p1+p2+p3+p4+part;              // WKI
-        else if(jenis==="Kolom") sum = p1+p2+p3+part+kotak;    // Kolom
-        else sum = p1+p2+p3+part;                              // P/R
+        if(jenis==="WKI") sum = p1+p2+p3+p4+part;
+        else if(jenis==="Kolom") sum = p1+p2+p3+part+kotak;
+        else sum = p1+p2+p3+part;
 
         el.jumlah.value = formatRupiah(sum);
       }
@@ -498,19 +523,25 @@
       function resetForm(){
         $("#namaIbadah").value="";
         ["hariTanggal","tempatIbadah","khadim"].forEach(id=> $("#"+id).value="");
-        el.mc.value=""; el.kehadiran.value="";
+
+        el.mc.value="";
+        el.kehadiran.value="";
+
         [el.p1,el.p2,el.p3,el.p4,el.part,el.kotak].forEach(x=> x.value="");
         el.jumlah.value="";
         el.hadirW.value=""; el.hadirP.value="";
+
+        el.p4Wrap.style.display="none";
         el.mcWrap.style.display="none";
         el.kehadiranWrap.style.display="none";
-        el.p4Wrap.style.display="none";
         el.kotakWrap.style.display="none";
         el.hadirWrap.style.display="none";
       }
 
       el.jenis.addEventListener("change", setVisibility);
       [el.p1,el.p2,el.p3,el.p4,el.part,el.kotak].forEach(attachRupiah);
+
+      // kehadiran & hadirW/hadirP hanya angka
       [el.kehadiran, el.hadirW, el.hadirP].forEach(onlyNumber);
 
       $("#resetBtn").addEventListener("click", ()=>{ resetForm(); showToast("Form direset."); });
@@ -527,9 +558,8 @@
           tempatIbadah: $("#tempatIbadah").value.trim(),
           khadim: $("#khadim").value.trim(),
 
-          // Hanya WKI
-          mc: (jenis==="WKI" ? ($("#mc").value.trim()) : ""),
-          kehadiran: (jenis==="WKI" ? ($("#kehadiran").value ? Number($("#kehadiran").value) : 0) : null),
+          // ✅ hanya WKI
+          mc: (jenis==="WKI" ? $("#mc").value.trim() : ""),
 
           pundi1: parseRupiahToNumber(el.p1.value),
           pundi2: parseRupiahToNumber(el.p2.value),
@@ -540,6 +570,12 @@
           kotak: (jenis==="Kolom" ? parseRupiahToNumber(el.kotak.value) : 0),
 
           jumlah: parseRupiahToNumber(el.jumlah.value),
+
+          // ✅ Kehadiran hanya WKI
+          kehadiran: (jenis==="WKI"
+            ? ($("#kehadiran").value ? Number($("#kehadiran").value) : 0)
+            : null
+          ),
 
           hadirWanita: (jenis==="Kolom" ? ($("#hadirW").value ? Number($("#hadirW").value) : 0) : null),
           hadirPria:   (jenis==="Kolom" ? ($("#hadirP").value ? Number($("#hadirP").value) : 0) : null),
@@ -641,58 +677,7 @@
       });
     }
 
-    // Boot Firebase (anti blank)
-    const firebaseConfig = {
-      apiKey: "AIzaSyDx0Pe-kYuza_i1GRs3arSINomyJtsH6Ik",
-      authDomain: "catatanibadah-9d2ab.firebaseapp.com",
-      projectId: "catatanibadah-9d2ab",
-      storageBucket: "catatanibadah-9d2ab.firebasestorage.app",
-      messagingSenderId: "625603481790",
-      appId: "1:625603481790:web:6e2d4a1f1eb4f7356b8eef",
-      measurementId: "G-GBYCNCHTF6"
-    };
-    const SHARED_EMAIL = "admin@gmail.com";
-    const SHARED_PASSWORD = "admin123";
-
-    let auth, db, NOTES_COL;
-
-    async function boot(){
-      try{
-        const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js");
-        const fbAuth = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js");
-        const fbStore = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js");
-
-        const app = initializeApp(firebaseConfig);
-        auth = fbAuth.getAuth(app);
-        db = fbStore.getFirestore(app);
-        NOTES_COL = fbStore.collection(db, "notes");
-
-        window.__fs = {
-          fetchNotes: async ()=>{
-            const qy = fbStore.query(NOTES_COL, fbStore.orderBy("createdAt","desc"));
-            const snap = await fbStore.getDocs(qy);
-            return snap.docs.map(d=>({id:d.id, ...d.data()}));
-          },
-          addNote: async (note)=> fbStore.addDoc(NOTES_COL, note),
-          deleteNote: async (id)=> fbStore.deleteDoc(fbStore.doc(db,"notes",id)),
-          signIn: (email,pass)=> fbAuth.signInWithEmailAndPassword(auth,email,pass),
-          signOut: ()=> fbAuth.signOut(auth),
-          onAuth: (cb)=> fbAuth.onAuthStateChanged(auth, cb),
-        };
-
-        navigate("login");
-        window.__fs.onAuth((user)=>{
-          if(user) navigate("home");
-          else navigate("login");
-        });
-
-      }catch(err){
-        showFatal("Detail:\n" + (err?.message || err));
-      }
-    }
-
-    backBtn.addEventListener("click", ()=> { if(auth?.currentUser) navigate("home"); else navigate("login"); });
-
+    // Start
     loadTheme();
     boot();
   </script>
